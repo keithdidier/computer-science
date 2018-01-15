@@ -39,3 +39,58 @@ let animals={
     }
   }
   printObj(animals)
+
+//*************************************************
+
+
+//basic factorial 
+function computeFactorial(num) {
+  if(num === 1) {
+    return 1;
+  } else {
+    return num * computeFactorial(num - 1);
+  }
+}
+computeFactorial(4);
+
+//Write a function that loops through the numbers n down to 0. If you haven't done so try using a while loop to do this.
+
+var countDown = function(n) {
+  while (n > 0) {
+    console.log(n);
+    n--;
+  }
+};
+countDown(5);
+
+//Write a function 'recursiveReverse' that takes an array and uses recursion to return its contents in reverse
+
+var recursiveReverse = function(arr) {
+  var reversedArr = [];
+  var addItems = function(orderedArr) {
+    //if array is empty, return
+    if(orderedArr.length > 0) {
+      reversedArr.push(orderedArr.pop());
+      addItems(orderedArr); 
+    }
+    return;
+  };
+  addItems(arr);
+  return reversedArr;
+};
+recursiveReverse([1,2,3,4,5,6]);
+
+//Write a function 'recursiveMultiplier' that takes two arguments, 'arr and num', and multiplies each arr value into by num and returns an array of the values.
+
+// [1,2,3] 3 => [3,6,9]
+
+var recursiveMultiplier = function(arr, num) {
+  if(arr.length === 0) {
+    return arr;
+  }
+  var last = arr.pop();
+  recursiveMultiplier(arr, num);
+  arr.push(last * num);
+  return arr;
+}
+recursiveMultiplier([1,2,3], 3);
