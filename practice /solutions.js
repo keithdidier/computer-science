@@ -46,7 +46,6 @@ function reverse(str) {
 //   palindrome("abcdefg") === false
 
 
-
 // Solution 1
 function palindrome(str) {
     var reversed = str.split("").reverse().join("");
@@ -61,3 +60,74 @@ function palindrome(str) {
         return char === str[str.length - i - 1];
     });
  }
+
+
+
+
+ // ***Problem 3***
+
+ // --- Directions
+// Given an integer, return an integer that is the reverse
+// ordering of numbers.
+// --- Examples
+//   reverseInt(15) === 51
+//   reverseInt(981) === 189
+//   reverseInt(500) === 5
+//   reverseInt(-15) === -51
+//   reverseInt(-90) === -9
+
+
+// Solution #1
+function reverseInt(n) {
+    const reversed = n.toString().split("").reverse().join("");
+
+    if(n < 0) {
+        return parseInt(reversed) * -1;
+    }
+    return parseInt(reversed);
+}
+
+
+// Solution #2
+function reverseInt(n) {
+    const reversed = n.toString().split("").reverse().join("");
+
+    return parseInt(reversed) * Math.sign(n);
+}
+
+
+
+
+// ***Problem 4***
+
+// --- Directions
+// Given a string, return the character that is most
+// commonly used in the string.
+// --- Examples
+// maxChar("abcccccccd") === "c"
+// maxChar("apple 1231111") === "1"
+
+
+function maxChar(str) {
+    const charMap = {};
+    let count = 0;
+    let maxChar = "";
+
+    for(let char of str) {
+        if(charMap[char]) {
+            charMap[char]++;
+        } else {
+            charMap[char] = 1;
+        }
+    }
+
+    for (let char in charMap) {
+        if (charMap[char] > count) {
+            count = charMap[char];
+            maxChar = char;
+        }
+    }
+    
+    return maxChar;
+
+}
