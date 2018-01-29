@@ -366,3 +366,99 @@ function steps(n, row = 0, stair = "") {
 
     steps(n, row, stair);
 }
+
+
+//****Promlem 10****
+
+// --- Directions
+// Write a function that accepts a positive number N.
+// The function should console log a pyramid shape
+// with N levels using the # character.  Make sure the
+// pyramid has spaces on both the left *and* right hand sides
+// --- Examples
+//   pyramid(1)
+//       '#'
+//   pyramid(2)
+//       ' # '
+//       '###'
+//   pyramid(3)
+//       '  #  '
+//       ' ### '
+//       '#####'
+
+
+// Solution #1
+function pyramid(n) {
+    const midpoint = Math.floor((2 * n - 1) / 2);
+
+    for(let row = 0; row < n; row++) {
+        let level = "";
+
+        for(let column = 0; column < 2 * n - 1; column++) {
+            if(midpoint - row <= column && midpoint + row >= column) {
+                level += "#";
+            } else {
+                level += " ";
+            }
+        }
+
+        console.log(level);
+    }
+
+}
+
+
+// Solution #2
+function pyramid(n, row = 0, level = "") {
+    if (row === n) {
+        return;
+    }
+
+    if (level.length === 2 * n - 1) {
+        console.log(level);
+        return pyramid(n, row + 1);
+    }
+
+    const midpoint = Math.floor((2 * n - 1) / 2);
+    let add;
+    if (midpoint - row <= level.length && midpoint + row >= level.length) {
+        add = "#";
+    } else {
+        add = " ";
+    }
+    pyramid(n, row, level + add);
+}
+
+
+//****Problem 11****
+
+// --- Directions
+// Write a function that returns the number of vowels
+// used in a string.  Vowels are the characters 'a', 'e'
+// 'i', 'o', and 'u'.
+// --- Examples
+//   vowels('Hi There!') --> 3
+//   vowels('Why do you ask?') --> 4
+//   vowels('Why?') --> 0
+
+
+// Solution #1
+function vowels(str) {
+    let count = 0;
+    const checker = ['a', 'e', 'i', 'o', 'u'];
+
+    for(let char of str.toLowerCase()) {
+        if(checker.includes(char)) {
+            count++;
+        }
+    }
+
+    return count;
+}
+
+
+// Solution #2
+function vowels(str) {
+    const matches = str.match(/[aeiou]/gi);
+    return matches ? matches.length : 0;
+}
